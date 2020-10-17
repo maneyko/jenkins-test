@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build') {
             agent { docker { image 'ruby:3.0-rc' } }
@@ -11,15 +11,7 @@ pipeline {
                     pwd
                 '''
                 sh 'pwd'
-                sh '''
-                    ruby << EOT
-                        def square(x) = x * x
-
-                        square(9) => n
-
-                        puts n
-                    EOT
-                '''
+                sh 'ruby -e "def square(x) = x * x; square(9) => n; puts n"'
             }
         }
     }
