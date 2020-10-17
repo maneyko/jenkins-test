@@ -1,15 +1,5 @@
-// pipeline {
-//     agent { docker { image 'ruby' } }
-//     stages {
-//         stage('build') {
-//             steps {
-//                 sh 'ruby --version'
-//             }
-//         }
-//     }
-// }
 pipeline {
-    agent any
+    agent { docker { image 'ruby:3.0-rc' } }
     stages {
         stage('Build') {
             steps {
@@ -20,6 +10,7 @@ pipeline {
                     pwd
                 '''
                 sh 'pwd'
+                sh 'ruby --version'
             }
         }
     }
