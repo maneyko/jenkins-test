@@ -1,7 +1,7 @@
 pipeline {
     stages {
-        agent { docker { image 'ruby:3.0-rc' } }
         stage('Build') {
+            agent { docker { image 'ruby:3.0-rc' } }
             steps {
                 sh 'echo "Hello World"'
                 sh '''
