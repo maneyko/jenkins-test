@@ -1,5 +1,5 @@
 pipeline {
-    agent { node { label 'docker' } }
+    agent any
     stages {
         stage('Build') {
             agent { docker { image 'ruby:3.0-rc' } }
