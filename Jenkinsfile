@@ -1,6 +1,6 @@
 pipeline {
-    agent { docker { image 'ruby:3.0-rc' } }
     stages {
+        agent { docker { image 'ruby:3.0-rc' } }
         stage('Build') {
             steps {
                 sh 'echo "Hello World"'
@@ -10,7 +10,15 @@ pipeline {
                     pwd
                 '''
                 sh 'pwd'
-                sh 'ruby --version'
+                sh '''
+                    ruby << EOT
+                        def square(x) = x * x
+
+                        square(9) => n
+
+                        puts n
+                    EOT
+                '''
             }
         }
     }
