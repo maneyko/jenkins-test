@@ -18,16 +18,14 @@ pipeline {
             }
         }
         stage("Stage 2") {
-            stages {
-                stage("Step 1") {
-                    steps {
-                        sh "echo 'Hello!'"
-                    }
+            stage("Step 1") {
+                steps {
+                    sh "echo 'Hello!'"
                 }
-                stage("Step 2") {
-                    steps {
-                        sh "echo 'Hello 2!'"
-                    }
+            }
+            stage("Step 2") {
+                steps {
+                    sh "echo 'Hello 2!'"
                 }
             }
         }
