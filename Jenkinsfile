@@ -2,7 +2,11 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            agent { docker { image 'ruby:3.0-rc' } }
+            agent {
+                dockerfile {
+                    reuseNode true
+                }
+            }
             steps {
                 sh 'echo "Hello World"'
                 sh '''
