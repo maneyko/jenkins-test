@@ -16,6 +16,8 @@ pipeline {
                 sh 'pwd'
                 sh 'ruby -e "def square(x) = x * x; square(9) => n; puts n"'
             }
+        }
+        stage("Stage 2") {
             stages {
                 stage("Step 1") {
                     steps {
