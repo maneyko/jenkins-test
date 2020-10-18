@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello World"'
+                sh 'echo hello > hello.txt'
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
@@ -22,6 +23,7 @@ pipeline {
                 stage("Step 1") {
                     steps {
                         sh "echo 'Hello!'"
+                        sh 'cat hello.txt'
                     }
                 }
                 stage("Step 2") {
