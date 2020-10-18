@@ -33,10 +33,10 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                sh 'echo "Hello post"'
-            }
+    }
+    post {
+        always {
+            sh 'echo "Hello post"'
         }
     }
 }
