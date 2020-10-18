@@ -1,12 +1,11 @@
 pipeline {
-    agent none
+    agent {
+        dockerfile {
+            reuseNode true
+        }
+    }
     stages {
         stage('Build') {
-            agent {
-                dockerfile {
-                    reuseNode true
-                }
-            }
             steps {
                 sh 'echo "Hello World"'
                 sh '''
@@ -16,6 +15,18 @@ pipeline {
                 '''
                 sh 'pwd'
                 sh 'ruby -e "def square(x) = x * x; square(9) => n; puts n"'
+            }
+        }
+        stages {
+            stage("Step 1") {
+                steps {
+                    sh "echo 'Hello!'"
+                }
+            }
+            stage("Step 2") {
+                steps {
+                    sh "echo 'Hello 2!'"
+                }
             }
         }
     }
