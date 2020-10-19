@@ -19,6 +19,7 @@ def call() {
                     stage("Step 2") {
                         steps {
                             sh 'echo hello world2'
+                            sh '''ruby -e "puts ENV['NAME1']"'''
                         }
                     }
                 }
@@ -26,7 +27,6 @@ def call() {
             stage('Build 2') {
                 steps {
                     sh 'echo $NAME3'
-                    sh '''ruby -e "puts ENV['NAME1']"'''
                 }
             }
         }
