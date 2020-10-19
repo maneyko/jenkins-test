@@ -16,6 +16,7 @@ def call() {
             throw e
         } finally {
             sh "echo 'Hello ${currentBuild.currentResult}'"
+            sh "echo 'Changes URL: ${env.RUN_CHANGES_DISPLAY_URL}'"
         }
     }
 }
