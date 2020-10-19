@@ -12,21 +12,18 @@ def call() {
                 }
                 stages {
                     stage("Step 1") {
-                        agent { dockerfile true }
                         steps {
                             sh 'echo hello world'
                         }
                     }
                     stage("Step 2") {
-                        agent { dockerfile true }
                         steps {
                             sh 'echo hello world2'
                         }
                     }
                 }
             }
-            stage('Step 1') {
-                agent { dockerfile true }
+            stage('Build 2') {
                 steps {
                     sh 'echo $NAME3'
                     sh '''ruby -e "puts ENV['NAME1']"'''
