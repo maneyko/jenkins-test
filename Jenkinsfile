@@ -19,7 +19,7 @@ pipeline {
             }
         }
         stage("Stage 2") {
-            parallel {
+            stages {
                 stage("Step 1") {
                     steps {
                         sh "echo 'Hello!'"
