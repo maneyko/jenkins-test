@@ -13,6 +13,6 @@ node {
     } catch(e) {
         throw e
     } finally {
-        sh "echo 'Hello ${currentBuild.currentResult}'"
+        sh "echo 'Hello ${currentBuild.result}'"
     }
 }
