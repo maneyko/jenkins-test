@@ -1,10 +1,8 @@
 pipeline {
     agent {
-        node('docker') {
-            dockerfile {
-                reuseNode true
-                args "--env-file ${WORKSPACE}/.env.docker"
-            }
+        dockerfile {
+            reuseNode true
+            args "--env-file $(pwd)/.env.docker"
         }
     }
     environment {
@@ -51,5 +49,13 @@ pipeline {
         always {
             sh 'echo "Hello post"'
         }
+    }
+}
+
+private void loadEnvironmentVariablesFromFile(String path) {
+    def file = readFile(path)
+    file.split('\n').each { envLine ->
+        def (key, value) = envLine.tokenize('=')
+        env."${key}" = "${value}"
     }
 }
