@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
+        SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
     }
     stages {
         stage('Build') {
@@ -13,6 +14,8 @@ pipeline {
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
                 sh 'cat commit.txt'
+                sh 'echo $SPACE > space.txt'
+                sh 'cat space.txt'
                 sh 'echo hello > hello.txt'
                 sh '''
                     echo "Multiline shell steps works too"
