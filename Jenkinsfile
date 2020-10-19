@@ -8,9 +8,6 @@ pipeline {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
     }
-    script {
-        loadEnvironmentVariablesFromFile('.env.docker')
-    }
     stages {
         stage('Build') {
             steps {
@@ -54,10 +51,12 @@ pipeline {
     }
 }
 
-private void loadEnvironmentVariablesFromFile(String path) {
-    def file = readFile(path)
-    file.split('\n').each { envLine ->
-        def (key, value) = envLine.tokenize('=')
-        env."${key}" = "${value}"
+/*
+    private void loadEnvironmentVariablesFromFile(String path) {
+        def file = readFile(path)
+        file.split('\n').each { envLine ->
+            def (key, value) = envLine.tokenize('=')
+            env."${key}" = "${value}"
+        }
     }
-}
+*/
