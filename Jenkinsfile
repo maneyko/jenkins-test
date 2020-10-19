@@ -6,11 +6,13 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent { dockerfile { reuseNode true } }
-            steps {
-                script {
-                    loadEnvironmentVariablesFromFile("${WORKSPACE}/.env.docker")
+            agent {
+                dockerfile {
+                    args "--env-file ${WORKSPACE}/.env.docker"
+                    reuseNode true
                 }
+            }
+            steps {
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
                 sh 'cat commit.txt'
@@ -34,6 +36,7 @@ pipeline {
                     agent { dockerfile { reuseNode true } }
                     steps {
                         sh "echo 'Hello!'"
+                        sh 'echo $NAME2'
                         sh 'cat hello.txt'
                     }
                 }
@@ -46,7 +49,7 @@ pipeline {
                     steps {
                         script {
                             docker.image('ruby:2.5').inside {
-                                sh 'echo ruby --version'
+                                sh 'ruby --version'
                             }
                         }
                     }
