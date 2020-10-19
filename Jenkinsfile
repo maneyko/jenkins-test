@@ -8,7 +8,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello World"'
-                sh "echo ${GIT_COMMIT} > commit.txt"
+                sh "export NAME=${GIT_COMMIT}"
+                sh "echo $NAME > commit.txt"
                 sh 'cat commit.txt'
                 sh 'echo hello > hello.txt'
                 sh '''
