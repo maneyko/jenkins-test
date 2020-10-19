@@ -6,8 +6,10 @@ pipeline {
     }
     stages {
         stage('Build') {
+            agent {
+                dockerfile { args "-e NAME=${GIT_COMMIT}" }
+            }
             steps {
-                sh "export NAME=${GIT_COMMIT}"
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > name.txt'
                 sh 'cat name.txt'
