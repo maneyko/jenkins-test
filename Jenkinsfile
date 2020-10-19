@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh 'echo "Hello World"'
                 sh "export NAME=${GIT_COMMIT}"
-                sh "echo $NAME > commit.txt"
+                sh 'echo $NAME > commit.txt'
                 sh 'cat commit.txt'
                 sh 'echo hello > hello.txt'
                 sh '''
