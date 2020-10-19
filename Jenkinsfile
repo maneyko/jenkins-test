@@ -1,15 +1,15 @@
 pipeline {
     agent {
-        node {
-            dockerfile {
-                reuseNode true
-            }
+        dockerfile {
+            args "-e NAME=${GIT_COMMIT}"
+            reuseNode true
         }
     }
     stages {
         stage('Build') {
             steps {
                 sh 'echo "Hello World"'
+                sh 'echo $NAME'
                 sh 'echo hello > hello.txt'
                 sh '''
                     echo "Multiline shell steps works too"
