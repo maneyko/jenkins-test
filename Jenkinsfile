@@ -4,11 +4,11 @@ pipeline {
             reuseNode true
         }
     }
+    environment {
+        NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
+    }
     stages {
         stage('Build') {
-            environment {
-                NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
-            }
             steps {
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
