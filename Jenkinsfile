@@ -1,21 +1,25 @@
-def call(env_file) {
+def call() {
     pipeline {
-        agent {
-            dockerfile {
-                args "--env-file ${env_file}"
-                reuseNode true
-            }
-        }
+        agent { node { label 'docker' } }
 
-        stages {
-            stage('Build') {
-                steps {
-                    sh 'ruby --version'
+        stage('Stages') {
+            agent {
+                dockerfile {
+                    args "--env-file ${WORKSPACE}/.env.docker"
+                    reuseNode true
                 }
             }
-            stage('Step 1') {
-                steps {
-                    sh 'echo $NAME3'
+            stages {
+                stage('Build') {
+                    steps {
+                        sh 'ruby --version'
+                    }
+                }
+                stage('Step 1') {
+                    steps {
+                        sh 'echo $NAME3'
+                        sh '''ruby -e "puts ENV['NAME1']"'''
+                    }
                 }
             }
         }
@@ -27,4 +31,14 @@ def call(env_file) {
     }
 }
 
-call("${WORKSPACE}/.env.docker")
+call()
+
+// Load ENV variables dynamically, ideally this file would be parsed
+// in the `agent` block at the top-level, but ${WORKSPACE} is not yet defined.
+private void loadEnvironmentVariablesFromFile(String path) {
+    def file = readFile(path)
+    file.split('\n').each { envLine ->
+        def (key, value) = envLine.tokenize('=')
+        env."${key}" = "${value}"
+    }
+}
