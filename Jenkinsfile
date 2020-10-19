@@ -10,10 +10,12 @@ def call() {
                     sh 'ruby --versiion'
                     sh 'echo $NAME3'
                 }
+                stage('Stage 2') {
+                    sh 'echo $NAME2'
+                }
             }
         } catch(e) {
             currentBuild.result = 'FAILED'
-            throw e
         } finally {
             sh "echo 'Hello ${currentBuild.currentResult}'"
             sh 'echo hi'
