@@ -1,15 +1,12 @@
 pipeline {
-    agent {
-        dockerfile {
-            reuseNode true
-        }
-    }
+    agent { node { label 'docker' } }
     environment {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
     }
     stages {
         stage('Build') {
+            agent { dockerfile { reuseNode true } }
             steps {
                 script {
                     loadEnvironmentVariablesFromFile("${WORKSPACE}/.env.docker")
@@ -34,6 +31,7 @@ pipeline {
         stage("Stage 2") {
             stages {
                 stage("Step 1") {
+                    agent { dockerfile { reuseNode true } }
                     steps {
                         sh "echo 'Hello!'"
                         sh 'cat hello.txt'
@@ -47,8 +45,8 @@ pipeline {
                 stage("Step 3") {
                     steps {
                         script {
-                            node(null) {
-                                sh 'echo hello'
+                            docker.image('ruby:2.5').inside {
+                                sh 'echo ruby --version'
                             }
                         }
                     }
