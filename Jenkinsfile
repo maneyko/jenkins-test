@@ -2,7 +2,6 @@ pipeline {
     agent {
         dockerfile {
             reuseNode true
-            args "--env-file .env.docker"
         }
     }
     environment {
