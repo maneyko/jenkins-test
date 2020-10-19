@@ -9,9 +9,7 @@ node {
             sh 'echo $NAME3'
         }
     }
-    post {
-        always {
-            sh 'echo "Hello post"'
-        }
+    finally {
+        sh 'echo "Hello post"'
     }
 }
