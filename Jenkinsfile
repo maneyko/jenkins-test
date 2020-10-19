@@ -1,13 +1,13 @@
 pipeline {
     agent {
         dockerfile {
-            args "-e NAME=${GIT_COMMIT}"
             reuseNode true
         }
     }
     stages {
         stage('Build') {
             steps {
+                sh "export NAME=${GIT_COMMIT}"
                 sh 'echo "Hello World"'
                 sh 'echo $NAME'
                 sh 'echo hello > hello.txt'
