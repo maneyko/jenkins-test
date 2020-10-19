@@ -10,8 +10,19 @@ def call() {
                         reuseNode true
                     }
                 }
-                steps {
-                    sh 'ruby --version'
+                stages {
+                    stage("Step 1") {
+                        agent { dockerfile true }
+                        steps {
+                            sh 'echo hello world'
+                        }
+                    }
+                    stage("Step 2") {
+                        agent { dockerfile true }
+                        steps {
+                            sh 'echo hello world2'
+                        }
+                    }
                 }
             }
             stage('Step 1') {
