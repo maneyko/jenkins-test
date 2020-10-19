@@ -3,7 +3,7 @@ node {
 
     def customImage = docker.build("jenkins-test:${env.BUILD_ID}")
 
-    customImage.withRun("--env-file ${WORKSPACE}/.env.docker") { -> c
+    customImage.withRun("--env-file ${WORKSPACE}/.env.docker") { c ->
         sh 'ruby --version'
         sh 'echo $NAME3'
     }
