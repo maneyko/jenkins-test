@@ -7,6 +7,12 @@ pipeline {
     environment {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
+        readFile('.env.docker').split('\n').each { line ->
+            arr = line.split('=')
+            var = line[0]
+            val = line[1..-1].join('')
+            Eval.me("""${var} = sh(script: "echo ${val}", , returnStdout: true).trim()""")
+        }
     }
     stages {
         stage('Build') {
@@ -16,6 +22,8 @@ pipeline {
                 sh 'cat commit.txt'
                 sh 'echo $SPACE > space.txt'
                 sh 'cat space.txt'
+                sh 'echo $NAME3 > name3.txt'
+                sh 'cat name3.txt'
                 sh 'echo hello > hello.txt'
                 sh '''
                     echo "Multiline shell steps works too"
