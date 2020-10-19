@@ -1,5 +1,9 @@
 pipeline {
-    node { label 'docker' }
+    agent {
+        dockerfile {
+            reuseNode true
+        }
+    }
     environment {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
