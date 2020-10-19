@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            reuseNode true
-        }
-    }
+    node { label 'docker' }
     environment {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
@@ -42,6 +38,13 @@ pipeline {
                 stage("Step 2") {
                     steps {
                         sh "echo 'Hello 2!'"
+                    }
+                }
+                stage("Step 3") {
+                    script {
+                        node(null) {
+                            sh 'echo hello'
+                        }
                     }
                 }
             }
