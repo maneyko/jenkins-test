@@ -2,17 +2,12 @@ pipeline {
     agent {
         dockerfile {
             reuseNode true
+            args "--env-file ${SPACE}/.env.docker"
         }
     }
     environment {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
-        readFile('.env.docker').split('\n').each { line ->
-            arr = line.split('=')
-            var = line[0]
-            val = line[1..-1].join('')
-            Eval.me("""${var} = sh(script: "echo ${val}", , returnStdout: true).trim()""")
-        }
     }
     stages {
         stage('Build') {
