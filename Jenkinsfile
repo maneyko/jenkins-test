@@ -1,4 +1,5 @@
 pipeline {
+    node { label 'master' }
     agent {
         dockerfile {
             args '--env-file ' + getContext().get(FilePath.class).getRemote()
