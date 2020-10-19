@@ -1,28 +1,26 @@
-def call() {
-    node {
-        checkout scm
-
-        try {
-            def customImage = docker.build("jenkins-test:${env.BUILD_ID}")
-
-            customImage.inside("--env-file ${WORKSPACE}/.env.docker") {
-                stage('Stage 1') {
-                    sh 'ruby --versiion'
-                    sh 'echo $NAME3'
-                }
-                stage('Stage 2') {
-                    sh 'echo $NAME2'
-                }
+def call(env_file) {
+    pipeline {
+        agent {
+            dockerfile {
+                args "--env-file ${env_file}"
+                reuseNode true
             }
-        } catch(e) {
-            currentBuild.result = 'FAILED'
-        } finally {
-            sh "echo 'Hello ${currentBuild.currentResult}'"
-            sh 'echo hi'
-            sh """echo 'Changes URL: ${env.RUN_CHANGES_DISPLAY_URL}'"""
-            sh 'echo hi2'
+        }
+
+        stages {
+            stage('Build') {
+                sh 'ruby --version'
+            }
+            stage('Step 1') {
+                sh 'echo $NAME3'
+            }
+        }
+        post {
+            always {
+                sh "echo 'Hello post'"
+            }
         }
     }
 }
 
-call()
+call("${WORKSPACE}/.env.docker")
