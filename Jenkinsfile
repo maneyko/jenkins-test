@@ -9,10 +9,14 @@ def call(env_file) {
 
         stages {
             stage('Build') {
-                sh 'ruby --version'
+                steps {
+                    sh 'ruby --version'
+                }
             }
             stage('Step 1') {
-                sh 'echo $NAME3'
+                steps {
+                    sh 'echo $NAME3'
+                }
             }
         }
         post {
