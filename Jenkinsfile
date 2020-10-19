@@ -45,9 +45,11 @@ pipeline {
                     }
                 }
                 stage("Step 3") {
-                    script {
-                        node(null) {
-                            sh 'echo hello'
+                    steps {
+                        script {
+                            node(null) {
+                                sh 'echo hello'
+                            }
                         }
                     }
                 }
