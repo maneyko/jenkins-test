@@ -9,7 +9,5 @@ node {
             sh 'echo $NAME3'
         }
     }
-    finally {
-        sh 'echo "Hello post"'
-    }
+    sh 'echo "Hello post"'
 }
