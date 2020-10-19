@@ -1,6 +1,7 @@
 pipeline {
     agent {
         dockerfile {
+            args '--env-file ' + getContext().get(FilePath.class).getRemote()
             reuseNode true
         }
     }
