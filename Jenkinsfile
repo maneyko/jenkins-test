@@ -6,13 +6,10 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent {
-                dockerfile { args "-e NAME=${GIT_COMMIT}" }
-            }
             steps {
                 sh 'echo "Hello World"'
-                sh 'echo $NAME > name.txt'
-                sh 'cat name.txt'
+                sh "echo ${GIT_COMMIT} > commit.txt"
+                sh 'cat commit.txt'
                 sh 'echo hello > hello.txt'
                 sh '''
                     echo "Multiline shell steps works too"
