@@ -3,14 +3,14 @@ def call() {
         agent { node { label 'docker' } }
 
         stage('Stages') {
-            agent {
-                dockerfile {
-                    args "--env-file ${WORKSPACE}/.env.docker"
-                    reuseNode true
-                }
-            }
             stages {
                 stage('Build') {
+                    agent {
+                        dockerfile {
+                            args "--env-file ${WORKSPACE}/.env.docker"
+                            reuseNode true
+                        }
+                    }
                     steps {
                         sh 'ruby --version'
                     }
