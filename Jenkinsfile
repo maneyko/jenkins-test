@@ -6,12 +6,7 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent {
-                dockerfile {
-                    args "--env-file ${WORKSPACE}/.env.docker"
-                    reuseNode true
-                }
-            }
+            agent { defaultAgent() }
             steps {
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
@@ -33,7 +28,7 @@ pipeline {
         stage("Stage 2") {
             stages {
                 stage("Step 1") {
-                    agent { dockerfile { reuseNode true } }
+                    agent { defaultAgent() }
                     steps {
                         sh "echo 'Hello!'"
                         sh 'echo $NAME2'
@@ -64,10 +59,9 @@ pipeline {
     }
 }
 
-private void loadEnvironmentVariablesFromFile(String path) {
-    def file = readFile(path)
-    file.split('\n').each { envLine ->
-        def (key, value) = envLine.tokenize('=')
-        env."${key}" = "${value}"
+private void defaultAgent() {
+    dockerfile {
+        args "--env-file ${WORKSPACE}/.env.docker"
+        reuseNode true
     }
 }
