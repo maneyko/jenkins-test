@@ -9,6 +9,9 @@ pipeline {
         NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
     }
+    script {
+        loadEnvironmentVariablesFromFile('.env.docker')
+    }
     stages {
         stage('Build') {
             steps {
