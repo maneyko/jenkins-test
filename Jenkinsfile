@@ -6,7 +6,7 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent { defaultAgent() }
+            agent { Eval.me("defaultAgent()") }
             steps {
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
@@ -28,7 +28,7 @@ pipeline {
         stage("Stage 2") {
             stages {
                 stage("Step 1") {
-                    agent { defaultAgent() }
+                    agent { Eval.me("defaultAgent()") }
                     steps {
                         sh "echo 'Hello!'"
                         sh 'echo $NAME2'
