@@ -5,9 +5,9 @@ node {
 
     customImage.inside("--env-file ${WORKSPACE}/.env.docker") {
         stage('Stage 1') {
-            sh 'ruby --version'
+            sh 'ruby --versiion'
             sh 'echo $NAME3'
         }
     }
-    sh 'echo "Hello post"'
+    sh "echo 'Hello ${currentBuild.currentResult}'"
 }
