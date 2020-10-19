@@ -9,7 +9,8 @@ pipeline {
             steps {
                 sh "export NAME=${GIT_COMMIT}"
                 sh 'echo "Hello World"'
-                sh 'echo $NAME'
+                sh 'echo $NAME > name.txt'
+                sh 'cat name.txt'
                 sh 'echo hello > hello.txt'
                 sh '''
                     echo "Multiline shell steps works too"
