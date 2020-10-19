@@ -1,8 +1,6 @@
 pipeline {
-    node { label 'master' }
     agent {
         dockerfile {
-            args '--env-file ' + getContext().get(FilePath.class).getRemote()
             reuseNode true
         }
     }
@@ -12,6 +10,9 @@ pipeline {
     }
     stages {
         stage('Build') {
+            script {
+                loadEnvironmentVariablesFromFile("${WORKSPACE}/.env.docker")
+            }
             steps {
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
@@ -53,12 +54,10 @@ pipeline {
     }
 }
 
-/*
-    private void loadEnvironmentVariablesFromFile(String path) {
-        def file = readFile(path)
-        file.split('\n').each { envLine ->
-            def (key, value) = envLine.tokenize('=')
-            env."${key}" = "${value}"
-        }
+private void loadEnvironmentVariablesFromFile(String path) {
+    def file = readFile(path)
+    file.split('\n').each { envLine ->
+        def (key, value) = envLine.tokenize('=')
+        env."${key}" = "${value}"
     }
-*/
+}
