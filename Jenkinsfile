@@ -6,9 +6,11 @@ pipeline {
     }
     stages {
         stage('Build') {
+            environment {
+                NAME = sh(script: "echo ${GIT_COMMIT}", , returnStdout: true).trim()
+            }
             steps {
                 sh 'echo "Hello World"'
-                sh "export NAME=${GIT_COMMIT}"
                 sh 'echo $NAME > commit.txt'
                 sh 'cat commit.txt'
                 sh 'echo hello > hello.txt'
