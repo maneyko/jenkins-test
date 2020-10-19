@@ -9,11 +9,11 @@ pipeline {
         SPACE = sh(script: "echo ${WORKSPACE}", , returnStdout: true).trim()
     }
     stages {
-        script {
-            loadEnvironmentVariablesFromFile("${WORKSPACE}/.env.docker")
-        }
         stage('Build') {
             steps {
+                script {
+                    loadEnvironmentVariablesFromFile("${WORKSPACE}/.env.docker")
+                }
                 sh 'echo "Hello World"'
                 sh 'echo $NAME > commit.txt'
                 sh 'cat commit.txt'
