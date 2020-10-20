@@ -39,7 +39,7 @@ def call() {
         }
         post {
             always {
-                def image = docker.build("jenkins-test:${GIT_COMMIT}")
+                sh 'echo hello'
             }
         }
     }
