@@ -30,9 +30,16 @@ def call() {
                 }
             }
         }
+        stage('Publish') {
+            steps {
+                script {
+                    def image = docker.build("jenkins-test:${GIT_COMMIT}")
+                }
+            }
+        }
         post {
             always {
-                sh "echo 'Hello post'"
+                def image = docker.build("jenkins-test:${GIT_COMMIT}")
             }
         }
     }
