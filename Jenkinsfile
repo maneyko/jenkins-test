@@ -29,17 +29,17 @@ def call() {
                     sh 'echo $NAME3'
                 }
             }
-        }
-        stage('Publish') {
-            steps {
-                script {
-                    def image = docker.build("jenkins-test:${GIT_COMMIT}")
+            stage('Publish') {
+                steps {
+                    script {
+                        def image = docker.build("jenkins-test:${GIT_COMMIT}")
+                    }
                 }
             }
         }
         post {
             always {
-                sh "echo 'Hello post'"
+                def image = docker.build("jenkins-test:${GIT_COMMIT}")
             }
         }
     }
