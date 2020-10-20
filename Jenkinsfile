@@ -7,7 +7,6 @@ def call() {
                 agent {
                     dockerfile {
                         args "--env-file ${WORKSPACE}/.env.docker"
-                        reuseNode true
                     }
                 }
                 stages {
