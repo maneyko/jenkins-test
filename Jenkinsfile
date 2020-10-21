@@ -14,6 +14,11 @@ def call() {
                         steps {
                             sh 'echo hello world'
                         }
+                        post {
+                            always {
+                                sh 'ruby --version'
+                            }
+                        }
                     }
                     stage("Step 2") {
                         steps {
