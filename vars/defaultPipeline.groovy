@@ -1,4 +1,4 @@
-def defaultPipeline() {
+def call() {
     pipeline {
         agent any
         stages {
