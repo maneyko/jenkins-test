@@ -49,7 +49,7 @@ def call() {
     }
 }
 
-defaultPipeline()
+defaultPipeline("newbranch")
 
 // call()
 //
