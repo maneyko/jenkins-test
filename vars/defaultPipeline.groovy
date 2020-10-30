@@ -1,4 +1,4 @@
-def call(projectName = "none", boolVar = true) {
+def call(projectName = "none", boolVar = false) {
     pipeline {
         agent any
         stages {
@@ -12,7 +12,13 @@ def call(projectName = "none", boolVar = true) {
                         echo "Multiline shell steps works too"
                         ls -lah
                     '''
-                    sh 'true && exit 1'
+                    sh """
+                        if test -n ${boolVar ? "true" : ""}; then
+                          echo 'was true'
+                        else
+                          echo 'was false'
+                        fi
+                    """
                     sh 'echo hello!'
                 }
                 post {
