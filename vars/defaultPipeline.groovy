@@ -2,15 +2,15 @@ def call(projectName = "none", boolVar = false) {
     pipeline {
         node { label 'docker' }
         stages {
-            dockerfile {
-                args """
-                  -e ENVVAR1=var1 \
-                  -e ENVVAR2=var2 \
-                  -e ENVVAR3=var3 \
-                  -e ENVVAR4=var4 \
-                """
-            }
             stage('Build') {
+                dockerfile {
+                    args """
+                      -e ENVVAR1=var1 \
+                      -e ENVVAR2=var2 \
+                      -e ENVVAR3=var3 \
+                      -e ENVVAR4=var4
+                    """
+                }
                 steps {
                     sh 'echo "Hello World"'
                     func()
