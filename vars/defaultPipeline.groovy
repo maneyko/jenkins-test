@@ -15,7 +15,7 @@ def call(projectName = "none", boolVar = false) {
                 }
                 stages {
                     stage('Tests') {
-                        when { expression { projectName ==~ /newbranch/ } }
+                        when { expression { projectName } }
                         steps {
                             sh 'echo "Hello World"'
                             func()
