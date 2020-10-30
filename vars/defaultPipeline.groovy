@@ -1,12 +1,26 @@
 def call(projectName = "none", boolVar = false) {
     pipeline {
-        agent any
+        node { label 'docker' }
         stages {
+            dockerfile {
+                args """
+                  -e ENVVAR1=var1 \
+                  -e ENVVAR2=var2 \
+                  -e ENVVAR3=var3 \
+                  -e ENVVAR4=var4 \
+                """
+            }
             stage('Build') {
                 steps {
                     sh 'echo "Hello World"'
                     func()
                     sh "echo 'The project name is ${projectName}'"
+                    sh """
+                      echo var1 $ENVVAR1
+                      echo var2 $ENVVAR2
+                      echo var3 $ENVVAR3
+                      echo var4 $ENVVAR4
+                    """
                     sampleMethod(projectName)
                     sh '''
                         echo "Multiline shell steps works too"
