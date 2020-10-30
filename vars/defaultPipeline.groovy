@@ -13,7 +13,7 @@ def call(projectName = "none", boolVar = false) {
                         ls -lah
                     '''
                     sh """
-                        if test -n '${boolVar ? "true" : ""}'; then
+                        if [[ -n ${boolVar ? "true" : ""} ]]; then
                           echo 'was true'
                         else
                           echo 'was false'
