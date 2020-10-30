@@ -19,12 +19,12 @@ def call(projectName = "none", boolVar = false) {
                             sh 'echo "Hello World"'
                             func()
                             sh "echo 'The project name is ${projectName}'"
-                            sh """
+                            sh '''
                               echo var1 $ENVVAR1
                               echo var2 $ENVVAR2
                               echo var3 $ENVVAR3
                               echo var4 $ENVVAR4
-                            """
+                            '''
                             sampleMethod(projectName)
                             sh '''
                                 echo "Multiline shell steps works too"
