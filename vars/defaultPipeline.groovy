@@ -3,21 +3,17 @@ def call(projectName = "none", boolVar = true) {
         agent any
         stages {
             stage('Build') {
-                when { boolVar }
                 steps {
                     sh 'echo "Hello World"'
+                    func()
                     sh "echo 'The project name is ${projectName}'"
                     sampleMethod(projectName)
                     sh '''
                         echo "Multiline shell steps works too"
                         ls -lah
                     '''
-                    func()
-                }
-                when { ! boolVar }
-                steps {
-                    sh 'echo "boolVar" is falsey!'
-                    func()
+                    sh 'true && exit 1'
+                    sh 'echo hello!'
                 }
             }
             post {
