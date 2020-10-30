@@ -15,6 +15,7 @@ def call(projectName = "none", boolVar = false) {
                 }
                 stages {
                     stage('Tests') {
+                        when { expression { projectName ==~ /jenkins/ } }
                         steps {
                             sh 'echo "Hello World"'
                             func()
