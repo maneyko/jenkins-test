@@ -39,10 +39,10 @@ def call(projectName = "none", boolVar = false) {
                             """
                             sh 'echo hello!'
                         }
-                    }
-                    post {
-                        always {
-                            sh 'echo post'
+                        post {
+                            always {
+                                sh 'echo post'
+                            }
                         }
                     }
                 }
