@@ -20,6 +20,11 @@ def call(projectName = "none", boolVar = false) {
                             func()
                             sh "echo 'The project name is ${projectName}'"
                             sh '''
+                              if test -n "$ENVVAR5"; then
+                                echo 1
+                              fi
+                            '''
+                            sh '''
                               echo var1 $ENVVAR1
                               echo var2 $ENVVAR2
                               echo var3 $ENVVAR3
