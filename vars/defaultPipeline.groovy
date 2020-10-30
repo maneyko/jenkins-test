@@ -15,10 +15,10 @@ def call(projectName = "none", boolVar = true) {
                     sh 'true && exit 1'
                     sh 'echo hello!'
                 }
-            }
-            post {
-                always {
-                    sh 'echo post'
+                post {
+                    always {
+                        sh 'echo post'
+                    }
                 }
             }
         }
