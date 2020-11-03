@@ -27,7 +27,7 @@ def call(projectName = "none", boolVar = false) {
                                 }
                             }
                             stage('Tests') {
-                                when { expression { projectName && false } }
+                                when { expression { projectName && true } }
                                 steps {
                                     sh 'echo "Hello World"'
                                     func()
