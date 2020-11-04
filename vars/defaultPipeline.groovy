@@ -1,7 +1,13 @@
-import org.maneyko.MyClass
+class MyClass {
+    String  var1  = "var1"
+    String  var2  = "var2"
+    String  var3  = "var3"
+    String  var4  = "var4"
+    Boolean bool1 = true
+}
 
 def call(projectName = "none", boolVar = false) {
-    klass = new MyClass()
+    opts = new MyClass(var1: "var111")
     pipeline {
         agent { node { label "docker" } }
         stages {
@@ -22,6 +28,7 @@ def call(projectName = "none", boolVar = false) {
                             stage("step 1") {
                                 steps {
                                     sh 'echo step 1'
+                                    sh "echo ${opts.var1}"
                                 }
                             }
                             stage("step 2") {
@@ -71,4 +78,10 @@ def call(projectName = "none", boolVar = false) {
 
 def func() {
     sh 'echo "this is func()"'
+}
+
+def makeOpts(Map map = [:]) {
+    new MyClass(map.subMap(
+            MyClass.getDeclaredFields().grep { !it.synthetic }.collect { key -> key.name }
+    ))
 }
