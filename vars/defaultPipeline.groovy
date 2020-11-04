@@ -1,4 +1,7 @@
+import org.maneyko.MyClass
+
 def call(projectName = "none", boolVar = false) {
+    klass = new MyClass()
     pipeline {
         agent { node { label "docker" } }
         stages {
@@ -26,7 +29,7 @@ def call(projectName = "none", boolVar = false) {
                                     sh 'echo step 2'
                                 }
                             }
-                            stage('Tests') {
+                            stage("Tests") {
                                 when { expression { projectName && true } }
                                 steps {
                                     sh 'echo "Hello World"'
@@ -56,11 +59,6 @@ def call(projectName = "none", boolVar = false) {
                                         fi
                                     """
                                     sh 'echo hello!'
-                                }
-                                post {
-                                    always {
-                                        sh 'echo post'
-                                    }
                                 }
                             }
                         }
