@@ -9,6 +9,9 @@ class MyClass {
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
     pipeline {
+        environment {
+            GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
+        }
         agent { node { label "docker" } }
         stages {
             stage('Build') {
@@ -29,6 +32,8 @@ def call(projectName = "none", boolVar = false) {
                                 steps {
                                     sh 'echo step 1'
                                     sh "echo ${opts.var1}"
+                                    sh "echo ${GIT_COMMIT}"
+                                    sh "echo ${GIT_COMMIT_SHORT}"
                                 }
                             }
                             stage("step 2") {
