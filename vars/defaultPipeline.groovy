@@ -71,7 +71,7 @@ def call(projectName = "none", boolVar = false) {
                                         fi
                                     """
                                     sh 'echo hello!'
-                                    build job: 'step 2'
+                                    build job: 'freestyle-proj'
                                 }
                             }
                         }
