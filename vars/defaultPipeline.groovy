@@ -77,7 +77,7 @@ def call(projectName = "none", boolVar = false) {
                     }
                     stage("other build") {
                         steps {
-                            build job: 'maneyko - GitHub/jenkins-test/master'
+                            build job: 'maneyko - GitHub/jenkins-test/master', wait: false
                         }
                     }
                 }
