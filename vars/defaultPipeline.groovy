@@ -77,7 +77,12 @@ def call(projectName = "none", boolVar = false) {
                     }
                     stage("other build") {
                         steps {
-                            build job: 'maneyko - GitHub/jenkins-test/master', wait: false
+                            build job: 'freestyle-proj',
+                                  parameters: [
+                                    string(name: "test_param1", value: "test_param1_value")
+                                  ],
+                                  propogate: true,
+                                  wait: false
                         }
                     }
                 }
