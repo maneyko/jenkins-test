@@ -71,6 +71,7 @@ def call(projectName = "none", boolVar = false) {
                                         fi
                                     """
                                     sh 'echo hello!'
+                                    build '../jenkins-test'
                                 }
                             }
                         }
