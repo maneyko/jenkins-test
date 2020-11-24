@@ -81,7 +81,7 @@ def call(projectName = "none", boolVar = false) {
                                   parameters: [
                                     string(name: "test_param1", value: "test_param1_value")
                                   ],
-                                  propogate: true,
+                                  propagate: true,
                                   wait: false
                         }
                     }
