@@ -44,6 +44,7 @@ def call() {
         post {
             always {
                 sh 'echo hello'
+                build '../jenkins-test'
             }
         }
     }
