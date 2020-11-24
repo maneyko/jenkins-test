@@ -12,7 +12,7 @@ def call() {
                 stages {
                     stage("Step 1") {
                         steps {
-                            sh 'echo hello world'
+                            sh 'echo helloooo world'
                         }
                         post {
                             always {
