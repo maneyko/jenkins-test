@@ -15,16 +15,6 @@ def call(projectName = "none", boolVar = false) {
         agent { node { label "docker" } }
         stages {
             stage('Build') {
-                agent {
-                    dockerfile {
-                        args """
-                          -e ENVVAR1=var1 \
-                          -e ENVVAR2=var2 \
-                          -e ENVVAR3=var3 \
-                          -e ENVVAR4=var4
-                        """
-                    }
-                }
                 stages {
                     stage('parallel stages') {
                         parallel {
