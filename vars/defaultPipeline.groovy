@@ -71,7 +71,7 @@ def call(projectName = "none", boolVar = false) {
                                         fi
                                     """
                                     sh 'echo hello!'
-                                    build job: 'freestyle-proj'
+                                    build job: 'maneyko - GitHub/jenkins-test/master-proj'
                                 }
                             }
                         }
