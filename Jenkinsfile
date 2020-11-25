@@ -10,10 +10,13 @@
 // }
 pipeline {
     agent any
-        parameters {
-            string(name: "repo_name")
-            string(name: "git_sha")
-        }
+    parameters {
+        string(name: "repo_name")
+        string(name: "git_sha")
+    }
+    environment {
+        JENKINS_GITHUB = credentials('jenkins-github')
+    }
     stages {
         stage('Build') {
             steps {
@@ -24,16 +27,12 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
+                githubNotify description: "The commit (${params.git_sha}) worked!!",
+                             status: "SUCCESS",
+                             account: 'maneyko',
+                             sha: params.git_sha,
+                             repo: params.repo_name
             }
-        }
-    }
-    post {
-        always {
-            githubNotify description: "The commit (${params.git_sha}) worked!!",
-                         status: "SUCCESS",
-                         account: 'maneyko',
-                         sha: params.git_sha,
-                         repo: params.repo_name
         }
     }
 }
