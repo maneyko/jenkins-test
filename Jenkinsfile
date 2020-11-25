@@ -27,12 +27,11 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-                sh """
-                curl -XPOST \
-                  -H "Accept: application/vnd.github.v3+json" \
-                  https://$JENKINS_GITHUB_PSW:x-oauth-basic@api.github.com/repos/maneyko/jenkins-test/statuses/${params.git_sha} \
-                  -d'{"state":"success", "target_url":"https://example.com/build/status", "description":"build worked!!!", "context":"continuous-integration/jenkins2"}'
-                """
+                githubNotify description: "worked!",
+                             status: "SUCCESS",
+                             sha: params.git_sha,
+                             repo: params.repo_name,
+                             context: "continuous-integration/jenkins3"
             }
         }
     }
