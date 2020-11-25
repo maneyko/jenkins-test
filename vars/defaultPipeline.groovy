@@ -23,6 +23,7 @@ def call(projectName = "none", boolVar = false) {
                                     sh 'echo step 1'
                                     sh "echo ${opts.var1}"
                                     sh "echo ${GIT_COMMIT}"
+                                    sh "echo changeid: ${env.CHANGE_ID}"
                                     sh "echo ${GIT_COMMIT_SHORT}"
                                 }
                             }
