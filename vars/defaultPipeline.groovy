@@ -70,10 +70,11 @@ def call(projectName = "none", boolVar = false) {
                     }
                     stage("other build") {
                         steps {
+                            GIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                             build job: 'maneyko - GitHub/jenkins-test/test-master',
                                   parameters: [
                                     string(name: "repo_name", value: "jenkins-test"),
-                                    string(name: "git_sha",   value: "$GIT_COMMIT")
+                                    string(name: "git_sha",   value: "$GIT_SHA")
                                   ],
                                   propagate: true,
                                   wait: true
