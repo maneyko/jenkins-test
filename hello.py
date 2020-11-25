@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 
-print('Helloo world!!!')
+print('Build seems to work')
