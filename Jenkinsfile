@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                githubNotify description: "This commit is beiing built",
+                githubNotify description: "This commit is being built",
                              status: "PENDING",
                              sha: params.git_sha,
                              repo: params.repo_name,
