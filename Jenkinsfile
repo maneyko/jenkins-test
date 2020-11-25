@@ -25,6 +25,7 @@ pipeline {
                              context: "jenkins/common-integration"
                 sh 'echo "Helloooo World"'
                 sh "echo 'the git sha is ${params.git_sha}'"
+                sh 'git rev-parse HEAD'
                 sh 'sleep 30'
                 sh '''
                     echo "Multiline shell steps works too"
