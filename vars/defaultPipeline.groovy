@@ -76,7 +76,7 @@ def call(projectName = "none", boolVar = false) {
                             build job: 'maneyko - GitHub/jenkins-test/test-master',
                                   parameters: [
                                     string(name: "repo_name", value: "jenkins-test"),
-                                    string(name: "git_sha",   value: "$GIT_SHA")
+                                    string(name: "git_sha",   value: "$GIT_SHA"),
                                     string(name: "status",    value: currentBuild.currentResult)
                                   ],
                                   propagate: true,
