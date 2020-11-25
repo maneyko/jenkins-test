@@ -28,9 +28,10 @@ pipeline {
                     ls -lah
                 '''
                 githubNotify description: "The commit (${params.git_sha}) worked!!",
-                             status: "SUCCESS",
+                             status: "success",
                              account: 'maneyko',
                              sha: params.git_sha,
+                             targetUrl: "https://example.com/build/success",
                              repo: params.repo_name
             }
         }
