@@ -29,7 +29,7 @@ pipeline {
     }
     post {
         always {
-            githubNotify description: "The commit worked!",
+            githubNotify description: "The commit (${params.git_sha}) worked!",
                          status: currentBuild.currentResult,
                          sha: params.git_sha,
                          repo: params.repo_name
