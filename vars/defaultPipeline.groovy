@@ -74,8 +74,6 @@ def call(projectName = "none", boolVar = false) {
                                   ],
                                   propagate: true,
                                   wait: true
-                            githubNotify description: "The commit ($GIT_COMMIT) worked!",
-                                         status: currentBuild.currentResult
                         }
                     }
                 }
