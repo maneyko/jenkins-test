@@ -73,7 +73,7 @@ def call(projectName = "none", boolVar = false) {
                                     string(name: "git_sha",   value: "$GIT_COMMIT")
                                   ],
                                   propagate: true,
-                                  wait: false
+                                  wait: true
                         }
                     }
                 }
