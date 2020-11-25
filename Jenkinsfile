@@ -11,17 +11,27 @@
 pipeline {
     agent any
         parameters {
-            string(name: "test_param1", defaultValue: "test_param1_default_value")
+            string(name: "repo_name")
+            string(name: "git_sha")
         }
     stages {
         stage('Build') {
             steps {
                 sh 'echo "Helloooo World"'
-                sh "echo 'test_param1 is: ${params.test_param1}'"
+                sh "echo 'the git sha is ${git_sha}'"
+                sh 'sleep 120'
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
+            }
+        }
+        post {
+            always {
+                githubNotify description: "This is a shortened example",
+                             status: currentBuild.currentResult,
+                             sha: params.git_sha,
+                             repo: params.repo_name
             }
         }
     }
