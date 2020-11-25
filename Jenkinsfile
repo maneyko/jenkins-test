@@ -32,14 +32,14 @@ pipeline {
                 '''
             }
         }
-        post {
-            always {
-                githubNotify description: currentBuild.currentResult,
-                             status: currentBuild.currentResult,
-                             sha: params.git_sha,
-                             repo: params.repo_name,
-                             context: "jenkins/common-integration"
-            }
+    }
+    post {
+        always {
+            githubNotify description: currentBuild.currentResult,
+                         status: currentBuild.currentResult,
+                         sha: params.git_sha,
+                         repo: params.repo_name,
+                         context: "jenkins/common-integration"
         }
     }
 }
