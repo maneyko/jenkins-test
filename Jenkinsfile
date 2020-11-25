@@ -26,13 +26,13 @@ pipeline {
                 '''
             }
         }
-        post {
-            always {
-                githubNotify description: "This is a shortened example",
-                             status: currentBuild.currentResult,
-                             sha: params.git_sha,
-                             repo: params.repo_name
-            }
+    }
+    post {
+        always {
+            githubNotify description: "This is a shortened example",
+                         status: currentBuild.currentResult,
+                         sha: params.git_sha,
+                         repo: params.repo_name
         }
     }
 }
