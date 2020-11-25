@@ -10,9 +10,11 @@ def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
     pipeline {
         agent { node { label 'docker' } }
-        stage('build2') {
-            steps {
-                sh 'echo first build'
+        stages {
+            stage('build2') {
+                steps {
+                    sh 'echo first build'
+                }
             }
         }
     }
