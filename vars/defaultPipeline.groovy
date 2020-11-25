@@ -80,7 +80,7 @@ def call(projectName = "none", boolVar = false) {
                                     string(name: "status",    value: currentBuild.currentResult)
                                   ],
                                   propagate: true,
-                                  wait: true
+                                  wait: false
                         }
                     }
                 }
