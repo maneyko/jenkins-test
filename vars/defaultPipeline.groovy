@@ -83,6 +83,7 @@ def call(projectName = "none", boolVar = false) {
                                   ],
                                   propagate: true,
                                   wait: false
+                            githubNotify description: "This is a shortened example", status: currentBuild.currentResult
                         }
                     }
                 }
