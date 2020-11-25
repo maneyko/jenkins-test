@@ -13,9 +13,7 @@ pipeline {
     parameters {
         string(name: "repo_name")
         string(name: "git_sha")
-    }
-    environment {
-        JENKINS_GITHUB = credentials('jenkins-github')
+        string(name: "status")
     }
     stages {
         stage('Build') {
@@ -28,10 +26,10 @@ pipeline {
                     ls -lah
                 '''
                 githubNotify description: "worked!",
-                             status: "SUCCESS",
+                             status: params.status,
                              sha: params.git_sha,
                              repo: params.repo_name,
-                             context: "continuous-integration/jenkins3"
+                             context: "jenkins/common-integration"
             }
         }
     }
