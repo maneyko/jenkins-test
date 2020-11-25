@@ -31,6 +31,7 @@ pipeline {
         always {
             githubNotify description: "The commit (${params.git_sha}) worked!!",
                          status: "SUCCESS",
+                         account: 'maneyko',
                          sha: params.git_sha,
                          repo: params.repo_name
         }
