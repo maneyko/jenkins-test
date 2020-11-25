@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Helloooo World"'
-                sh "echo 'the git sha is ${git_sha}'"
+                sh "echo 'the git sha is ${params.git_sha}'"
                 sh 'sleep 120'
                 sh '''
                     echo "Multiline shell steps works too"
