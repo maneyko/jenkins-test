@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh 'echo "Helloooo World"'
                 sh "echo 'the git sha is ${params.git_sha}'"
-                sh 'sleep 120'
+                sh 'sleep 60'
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
@@ -29,7 +29,7 @@ pipeline {
     }
     post {
         always {
-            githubNotify description: "This is a shortened example",
+            githubNotify description: "The commit worked!",
                          status: currentBuild.currentResult,
                          sha: params.git_sha,
                          repo: params.repo_name
