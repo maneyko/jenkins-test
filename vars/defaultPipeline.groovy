@@ -67,13 +67,13 @@ def call(projectName = "none", boolVar = false) {
                     }
                     stage("other build") {
                         steps {
-                            build job: 'maneyko - GitHub/jenkins-test/master',
+                            build job: 'maneyko - GitHub/jenkins-test/test-master',
                                   parameters: [
-                                    string(name: "test_param1", value: "test_param1_value")
+                                    string(name: "repo_name", value: "jenkins-test")
+                                    string(name: "git_sha",   value: "$GIT_COMMIT")
                                   ],
                                   propagate: true,
                                   wait: false
-                            githubNotify description: "This is a shortened example", status: currentBuild.currentResult
                         }
                     }
                 }
