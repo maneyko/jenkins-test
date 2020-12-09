@@ -24,7 +24,7 @@ def call(projectName = "none", boolVar = false) {
                             }
                             stage("step 1.5") {
                                 steps {
-                                    myfunc()
+                                    myfunc(this)
                                 }
                             }
                             stage("step 2") {
@@ -97,9 +97,9 @@ class MyClass {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
-    def myfunc = {
-        sh "echo 'var1 is ${var1}'"
-        sh "echo 'bool1 is ${bool1}'"
+    def myfunc = { script ->
+        script.sh "echo 'var1 is ${var1}'"
+        script.sh "echo 'bool1 is ${bool1}'"
     }
 }
 
