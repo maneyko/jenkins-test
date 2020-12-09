@@ -63,7 +63,7 @@ def call(projectName = "none", boolVar = false) {
                                     sh 'echo "Hello World"'
                                     // myfunc(this)
                                     func(this)
-                                    sh "echo 'The project name is ${projectName}'"
+                                    sh "echo 'The project name ${GIT_BRANCH} is ${projectName}'"
                                     sh '''
                                       if test -n "$ENVVAR5"; then
                                         echo 1
