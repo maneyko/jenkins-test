@@ -4,7 +4,7 @@ class MyClass implements Serializable {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
-    Array theSteps = [
+    List theSteps = [
         "echo 'script class is none'",
         "echo 'the var1 is ${var1}'"
     ]
