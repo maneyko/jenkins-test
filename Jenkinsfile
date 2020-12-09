@@ -29,7 +29,7 @@ pipeline {
                 sh 'git rev-parse HEAD'
                 sh 'sleep 30'
                 script {
-                    if (params.fooBar.blank) {
+                    if (params.fooBar.isEmpty()) {
                         sh "echo 'fooBar is blank'"
                     } else {
                         sh "echo 'fooBar is not blank'"
