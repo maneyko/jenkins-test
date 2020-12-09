@@ -48,6 +48,8 @@ def call(projectName = "none", boolVar = false) {
                             stage("step 1.5") {
                                 steps {
                                     script {
+                                        gitBranch = sh(script: 'git name-rev --name-only HEAD', returnStdout: true).trim()
+                                        sh "echo 'the branch name is ${gitBranch}.'"
                                         opts.myfunc2(this)
                                     }
                                 }
