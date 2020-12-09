@@ -5,8 +5,7 @@ class MyClass {
     String  var4  = "var4"
     Boolean bool1 = true
     def myfunc = { script ->
-        script.sh "echo 'the var1 is ${var1}'";
-        script.sh "echo 'bool1 is ${bool1}'";
+        script.sh "echo 'the var1 is ${script.class}'"
     }
 }
 
