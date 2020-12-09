@@ -1,5 +1,6 @@
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
+    myfunc = opts.myfunc
     pipeline {
         environment {
             GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
@@ -23,7 +24,7 @@ def call(projectName = "none", boolVar = false) {
                             }
                             stage("step 1.5") {
                                 steps {
-                                    opts.func()
+                                    myfunc()
                                 }
                             }
                             stage("step 2") {
