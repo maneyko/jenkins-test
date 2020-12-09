@@ -1,3 +1,15 @@
+class MyClass {
+    String  var1  = "var1"
+    String  var2  = "var2"
+    String  var3  = "var3"
+    String  var4  = "var4"
+    Boolean bool1 = true
+    def myfunc = { script ->
+        script.sh "echo 'var1 is ${var1}'"
+        script.sh "echo 'bool1 is ${bool1}'"
+    }
+}
+
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
     myfunc = opts.myfunc
@@ -89,18 +101,6 @@ def call(projectName = "none", boolVar = false) {
 
 def func() {
     sh 'echo "this is func()"'
-}
-
-class MyClass {
-    String  var1  = "var1"
-    String  var2  = "var2"
-    String  var3  = "var3"
-    String  var4  = "var4"
-    Boolean bool1 = true
-    def myfunc = { script ->
-        script.sh "echo 'var1 is ${var1}'"
-        script.sh "echo 'bool1 is ${bool1}'"
-    }
 }
 
 def makeOpts(Map map = [:]) {
