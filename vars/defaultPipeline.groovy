@@ -6,6 +6,7 @@ class MyClass {
     Boolean bool1 = true
     def myfunc = { script ->
         script.sh "echo 'var1 is ${var1}'"
+        script.sh "echo 'script class is: ${script.class}'"
         script.sh "echo 'bool1 is ${bool1}'"
     }
 }
