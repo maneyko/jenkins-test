@@ -4,6 +4,10 @@ class MyClass {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
+    def func {
+        sh "echo 'var1 is ${var1}'"
+        sh "echo 'bool1 is ${bool1}'"
+    }
 }
 
 def call(projectName = "none", boolVar = false) {
@@ -28,6 +32,9 @@ def call(projectName = "none", boolVar = false) {
                                     sh "echo changeid: ${env.CHANGE_ID}"
                                     sh "echo ${GIT_COMMIT_SHORT}"
                                 }
+                            }
+                            stage("step 1.5") {
+                                opts.func()
                             }
                             stage("step 2") {
                                 steps {
