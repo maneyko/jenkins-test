@@ -101,6 +101,7 @@ def call(projectName = "none", boolVar = false) {
 
 def func() {
     sh 'echo "this is func()"'
+    sh 'echo "this is the second line of func()"'
 }
 
 def makeOpts(Map map = [:]) {
