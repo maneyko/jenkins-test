@@ -35,7 +35,9 @@ def call(projectName = "none", boolVar = false) {
                             }
                             stage("step 1.5") {
                                 steps {
-                                    opts.func()
+                                    script {
+                                        opts.func()
+                                    }
                                 }
                             }
                             stage("step 2") {
