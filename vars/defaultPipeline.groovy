@@ -5,10 +5,14 @@ class MyClass implements Serializable {
     String  var4  = "var4"
     Boolean bool1 = true
 
-    @NonCPS
     def myfunc = { script ->
         script.sh "echo 'script class is ${script.class}'"
         script.sh "echo 'the var1 is ${var1}'"
+    }
+
+    @NonCPS
+    def myfunc2(script) {
+        myfunc(script)
     }
 }
 
@@ -44,7 +48,7 @@ def call(projectName = "none", boolVar = false) {
                             stage("step 1.5") {
                                 steps {
                                     script {
-                                        opts.myfunc(this)
+                                        opts.myfunc2(this)
                                     }
                                 }
                             }
