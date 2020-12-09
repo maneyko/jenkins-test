@@ -10,6 +10,12 @@ class MyClass implements Serializable {
     }
 }
 
+def func = { script ->
+    script.sh 'echo "this is func()"'
+    script.sh "echo 'script class is ${script.class}'"
+    script.sh 'echo "this is the second line of func()"'
+}
+
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
     myfunc = opts.myfunc
@@ -48,7 +54,7 @@ def call(projectName = "none", boolVar = false) {
                                 when { expression { projectName && true } }
                                 steps {
                                     sh 'echo "Hello World"'
-                                    myfunc(this)
+                                    // myfunc(this)
                                     func(this)
                                     sh "echo 'The project name is ${projectName}'"
                                     sh '''
@@ -98,12 +104,6 @@ def call(projectName = "none", boolVar = false) {
             }
         }
     }
-}
-
-def func = { script ->
-    script.sh 'echo "this is func()"'
-    // script.sh "echo 'script class is ${script.class}'"
-    script.sh 'echo "this is the second line of func()"'
 }
 
 def makeOpts(Map map = [:]) {
