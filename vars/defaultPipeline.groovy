@@ -4,15 +4,15 @@ class MyClass implements Serializable {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
+    Array theSteps = [
+        "echo 'script class is ${script.class}'"
+        "echo 'the var1 is ${var1}'"
+    ]
 
-    def myfunc = { script ->
-        script.sh "echo 'script class is ${script.class}'"
-        script.sh "echo 'the var1 is ${var1}'"
-    }
-
-    @NonCPS
     def myfunc2(script) {
-        myfunc(script)
+        theSteps.each { theStep ->
+            script.sh theStep
+        }
     }
 }
 
