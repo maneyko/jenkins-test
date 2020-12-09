@@ -1,4 +1,4 @@
-class MyClass {
+class MyClass implements Serializable {
     String  var1  = "var1"
     String  var2  = "var2"
     String  var3  = "var3"
