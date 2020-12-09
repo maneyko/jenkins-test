@@ -4,7 +4,7 @@ class MyClass implements Serializable {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
-    def myfunc = { script ->
+    def myfunc(script) {
         script.sh "echo 'script class is ${script.class}'"
         script.sh "echo 'the var1 is ${var1}'"
     }
@@ -18,7 +18,6 @@ def func(script) {
 
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
-    myfunc = opts.myfunc
     pipeline {
         environment {
             GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
@@ -42,7 +41,7 @@ def call(projectName = "none", boolVar = false) {
                             }
                             stage("step 1.5") {
                                 steps {
-                                    myfunc(this)
+                                    opts.myfunc(this)
                                 }
                             }
                             stage("step 2") {
