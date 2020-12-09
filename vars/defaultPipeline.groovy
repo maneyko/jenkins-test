@@ -48,6 +48,7 @@ def call(projectName = "none", boolVar = false) {
                                 when { expression { projectName && true } }
                                 steps {
                                     sh 'echo "Hello World"'
+                                    myfunc(this)
                                     func(this)
                                     sh "echo 'The project name is ${projectName}'"
                                     sh '''
