@@ -4,7 +4,7 @@ class MyClass {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
-    def func {
+    def func = {
         sh "echo 'var1 is ${var1}'"
         sh "echo 'bool1 is ${bool1}'"
     }
