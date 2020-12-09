@@ -100,8 +100,9 @@ def call(projectName = "none", boolVar = false) {
     }
 }
 
-def func(script) {
+def func = { script ->
     script.sh 'echo "this is func()"'
+    script.sh "echo 'script class is ${script.class}'"
     script.sh 'echo "this is the second line of func()"'
 }
 
