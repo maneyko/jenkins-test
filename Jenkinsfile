@@ -14,6 +14,7 @@ pipeline {
         string(name: "repo_name")
         string(name: "git_sha")
         string(name: "status")
+        string(name: "fooBar", defaultValue: "")
     }
     stages {
         stage('Build') {
@@ -27,6 +28,13 @@ pipeline {
                 sh "echo 'the git sha ${params.class} is ${params.git_sha}'"
                 sh 'git rev-parse HEAD'
                 sh 'sleep 30'
+                script {
+                    if (params.fooBar.isBlank()) {
+                        sh "echo 'fooBar is blank'"
+                    } else {
+                        sh "echo 'fooBar is not blank'"
+                    }
+                }
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
