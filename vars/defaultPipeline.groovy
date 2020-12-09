@@ -112,6 +112,11 @@ def call(projectName = "none", boolVar = false) {
                 }
             }
         }
+        post {
+            always {
+                sh "echo 'build time: ${currentBuild.durationString}'"
+            }
+        }
     }
 }
 
