@@ -96,6 +96,7 @@ def call(projectName = "none", boolVar = false) {
                     }
                     stage("other build") {
                         steps {
+                            sh "sleep 65"
                             script {
                                 GIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                             }
@@ -114,7 +115,7 @@ def call(projectName = "none", boolVar = false) {
         }
         post {
             always {
-                sh "echo 'build time: ${currentBuild.durationString}'"
+                sh "echo 'build time: ${currentBuild.durationString.replace(" and counting", "")}'"
             }
         }
     }
