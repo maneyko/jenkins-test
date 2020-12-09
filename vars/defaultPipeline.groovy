@@ -4,6 +4,8 @@ class MyClass implements Serializable {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
+
+    @NonCPS
     def myfunc = { script ->
         script.sh "echo 'script class is ${script.class}'"
         script.sh "echo 'the var1 is ${var1}'"
