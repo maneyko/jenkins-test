@@ -4,7 +4,7 @@ class MyClass implements Serializable {
     String  var3  = "var3"
     String  var4  = "var4"
     Boolean bool1 = true
-    void myfunc(script) {
+    def myfunc = { script ->
         script.sh "echo 'script class is ${script.class}'"
         script.sh "echo 'the var1 is ${var1}'"
     }
@@ -48,7 +48,7 @@ def call(projectName = "none", boolVar = false) {
                                 when { expression { projectName && true } }
                                 steps {
                                     sh 'echo "Hello World"'
-                                    func()
+                                    func(this)
                                     sh "echo 'The project name is ${projectName}'"
                                     sh '''
                                       if test -n "$ENVVAR5"; then
@@ -99,9 +99,9 @@ def call(projectName = "none", boolVar = false) {
     }
 }
 
-def func() {
-    sh 'echo "this is func()"'
-    sh 'echo "this is the second line of func()"'
+def func(script) {
+    script.sh 'echo "this is func()"'
+    script.sh 'echo "this is the second line of func()"'
 }
 
 def makeOpts(Map map = [:]) {
