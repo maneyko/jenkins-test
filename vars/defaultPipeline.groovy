@@ -40,6 +40,7 @@ def call(projectName = "none", boolVar = false) {
                                     sh "echo ${opts.var1}"
                                     sh "echo ${GIT_COMMIT}"
                                     sh "echo 'git url is: ${env.GIT_URL}.'"
+                                    sh "echo 'git change_id is: ${env.CHANGE_ID}.'"
                                     sh "git branch"
                                     sh "git rev-parse --short HEAD"
                                     sh "echo changeid: ${env.CHANGE_ID}"
@@ -97,7 +98,7 @@ def call(projectName = "none", boolVar = false) {
                     }
                     stage("other build") {
                         steps {
-                            sh "sleep 65"
+                            sh "sleep 15"
                             script {
                                 GIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                             }
