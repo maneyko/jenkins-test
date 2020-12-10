@@ -39,6 +39,7 @@ def call(projectName = "none", boolVar = false) {
                                     sh 'echo step 1'
                                     sh "echo ${opts.var1}"
                                     sh "echo ${GIT_COMMIT}"
+                                    sh "echo 'git url is: ${env.GIT_URL}.'"
                                     sh "git branch"
                                     sh "git rev-parse --short HEAD"
                                     sh "echo changeid: ${env.CHANGE_ID}"
