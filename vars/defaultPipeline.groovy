@@ -58,6 +58,13 @@ def call(projectName = "none", boolVar = false) {
                                     script {
                                         gitBranch = sh(script: 'git name-rev --name-only HEAD', returnStdout: true).trim()
                                         repoUrl   = sh(script: 'git remote show origin -n', returnStdout: true).trim()
+
+                                        JSONObject branchInfo = new JSONObject();
+                                        branchInfo.put("title", "Title");
+                                        branchInfo.put("value", "<https://example.com/|This is an example link>");
+                                        branchInfo.put("short", true);
+                                        sh "echo 'json string: ${branchInfo.toString()}'"
+
                                         sh "echo 'the branch name is ${gitBranch}. repo url is ${repoUrl}.'"
                                         opts.myfunc2(this)
                                     }
