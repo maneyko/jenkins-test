@@ -51,7 +51,7 @@ def call(projectName = "none", boolVar = false) {
                                 steps {
                                     script {
                                         gitBranch = sh(script: 'git name-rev --name-only HEAD', returnStdout: true).trim()
-                                        repoUrl   = sh(script: 'git config --get remote.origin.url', returnStdout: true).trim()
+                                        repoUrl   = sh(script: 'git remote show origin -n', returnStdout: true).trim()
                                         sh "echo 'the branch name is ${gitBranch}. repo url is ${repoUrl}.'"
                                         opts.myfunc2(this)
                                     }
