@@ -43,7 +43,9 @@ def call(projectName = "none", boolVar = false) {
                                     sh "echo 'git change_id is: ${env.CHANGE_ID}.'"
                                     sh "git branch"
                                     sh "git rev-parse --short HEAD"
-                                    sh "echo changeid: ${env.CHANGE_ID}"
+                                    sh "echo git branch is: ${GIT_BRANCH}"
+                                    sh "echo change branch is: ${CHANGE_BRANCH}"
+                                    sh "echo change ID is: ${env.CHANGE_ID}"
                                     sh "echo ${GIT_COMMIT_SHORT}"
                                 }
                             }
