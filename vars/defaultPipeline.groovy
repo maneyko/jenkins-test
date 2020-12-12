@@ -48,6 +48,8 @@ def call(projectName = "none", boolVar = false) {
                                     sh "echo change branch is: ${env.CHANGE_BRANCH}"
                                     sh "echo change ID is: ${env.CHANGE_ID}"
                                     sh "echo full path branch is: ${env.FULL_PATH_BRANCH}"
+                                    sh "git --no-pager show -s --format='%an'"
+                                    sh "git log -n 1 --pretty=format:'%s%n%n%b'"
                                     sh "echo ${GIT_COMMIT_SHORT}"
                                 }
                             }
