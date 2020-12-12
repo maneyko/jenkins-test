@@ -27,6 +27,7 @@ def call(projectName = "none", boolVar = false) {
     pipeline {
         environment {
             GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
+            FULL_PATH_BRANCH = "${sh(script: 'git name-rev --name-only HEAD', returnStdout: true)}".trim()
         }
         agent { node { label "docker" } }
         stages {
@@ -43,9 +44,10 @@ def call(projectName = "none", boolVar = false) {
                                     sh "echo 'git change_id is: ${env.CHANGE_ID}.'"
                                     sh "git branch"
                                     sh "git rev-parse --short HEAD"
-                                    sh "echo git branch is: ${GIT_BRANCH}"
-                                    sh "echo change branch is: ${CHANGE_BRANCH}"
+                                    sh "echo git branch is: ${env.GIT_BRANCH}"
+                                    sh "echo change branch is: ${env.CHANGE_BRANCH}"
                                     sh "echo change ID is: ${env.CHANGE_ID}"
+                                    sh "echo full path branch is: ${env.FULL_PATH_BRANCH}"
                                     sh "echo ${GIT_COMMIT_SHORT}"
                                 }
                             }
