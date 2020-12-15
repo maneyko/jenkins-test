@@ -28,7 +28,7 @@ def call(projectName = "none", boolVar = false) {
 
     pipeline {
         environment {
-            ABC = "${(null ? sh(script: "echo 123", returnStdout: true).trim() : sh(script: "echo 456", returnStdout: true).trim())}"
+            ABC = "${getAbc()}"
             GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
             FULL_PATH_BRANCH = "${sh(script: 'git name-rev --name-only HEAD', returnStdout: true)}".trim()
         }
@@ -133,6 +133,14 @@ def call(projectName = "none", boolVar = false) {
                 sh "echo 'build time: ${currentBuild.durationString.replace(" and counting", "")}'"
             }
         }
+    }
+}
+
+def getAbc() {
+    if (null) {
+        return "123"
+    } else {
+        return "456"
     }
 }
 
