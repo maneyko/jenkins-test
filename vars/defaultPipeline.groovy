@@ -24,6 +24,9 @@ def func(script) {
 
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
+
+    ABC = sh(script: "echo 123", returnStdout: true).trim()
+
     pipeline {
         environment {
             GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
@@ -48,6 +51,7 @@ def call(projectName = "none", boolVar = false) {
                                     sh "echo change branch is: ${env.CHANGE_BRANCH}"
                                     sh "echo change ID is: ${env.CHANGE_ID}"
                                     sh "echo full path branch is: ${env.FULL_PATH_BRANCH}"
+                                    sh "echo 'ABC is: ${ABC}'"
                                     sh "git --no-pager show -s --format='%an'"
                                     sh "git log -n 1 --pretty=format:'%s%n%n%b'"
                                     sh "echo ${GIT_COMMIT_SHORT}"
@@ -58,12 +62,6 @@ def call(projectName = "none", boolVar = false) {
                                     script {
                                         gitBranch = sh(script: 'git name-rev --name-only HEAD', returnStdout: true).trim()
                                         repoUrl   = sh(script: 'git remote show origin -n', returnStdout: true).trim()
-
-                                        JSONObject branchInfo = new JSONObject();
-                                        branchInfo.put("title", "Title");
-                                        branchInfo.put("value", "<https://example.com/|This is an example link>");
-                                        branchInfo.put("short", true);
-                                        sh "echo 'json string: ${branchInfo.toString()}'"
 
                                         sh "echo 'the branch name is ${gitBranch}. repo url is ${repoUrl}.'"
                                         opts.myfunc2(this)
