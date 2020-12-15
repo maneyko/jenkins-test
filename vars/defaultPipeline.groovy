@@ -25,10 +25,10 @@ def func(script) {
 def call(projectName = "none", boolVar = false) {
     opts = new MyClass(var1: "var111")
 
-    ABC = sh(script: "echo 123", returnStdout: true).trim()
 
     pipeline {
         environment {
+            ABC = "${(null ? sh(script: "echo 123", returnStdout: true).trim() : sh(script: "echo 456", returnStdout: true).trim())}"
             GIT_COMMIT_SHORT = "${GIT_COMMIT.take(7)}"
             FULL_PATH_BRANCH = "${sh(script: 'git name-rev --name-only HEAD', returnStdout: true)}".trim()
         }
