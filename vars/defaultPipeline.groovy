@@ -69,6 +69,9 @@ def call(projectName = "none", boolVar = false) {
                                         if (env.CHANGE_ID) {
                                             sh "echo changeid is: ${env.CHANGE_ID}"
                                             sh "echo pull request is ${pullRequest.head}"
+                                            pullRequest.files.each { thefile ->
+                                                sh "echo the file is '${thefile}'"
+                                            }
                                         }
                                     }
                                 }
