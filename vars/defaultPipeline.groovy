@@ -70,7 +70,7 @@ def call(projectName = "none", boolVar = false) {
                                             sh "echo changeid is: ${env.CHANGE_ID}"
                                             sh "echo pull request is ${pullRequest.head}"
                                             pullRequest.files.each { thefile ->
-                                                sh "echo the file is '${thefile}'"
+                                                sh "echo the file is '${thefile.getFilename()}'"
                                             }
                                         }
                                     }
