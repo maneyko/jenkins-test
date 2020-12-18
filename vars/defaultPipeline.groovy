@@ -65,6 +65,11 @@ def call(projectName = "none", boolVar = false) {
 
                                         sh "echo 'the branch name is ${gitBranch}. repo url is ${repoUrl}.'"
                                         opts.myfunc2(this)
+
+                                        if (env.CHANGE_ID) {
+                                            sh "echo changeid is: ${env.CHANGE_ID}"
+                                            sh "echo pull request is ${pullRequest.head}"
+                                        }
                                     }
                                 }
                             }
