@@ -145,7 +145,7 @@ def call(projectName = "none", boolVar = false) {
 }
 
 def getAbc() {
-    if (null) {
+    if (["aaa", "bbb", "ccc"].contains("bbb")) {
         return "123"
     } else {
         return "456"
