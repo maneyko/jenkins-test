@@ -74,19 +74,16 @@ def call(projectName = "none", boolVar = false) {
                                             }
                                         }
                                         def changeLogSets = currentBuild.changeSets
-                                        for (int i = 0; i < changeLogSets.size(); i++) {
-                                            def entries = changeLogSets[i].items
-                                            for (int j = 0; j < entries.length; j++) {
-                                                def entry = entries[j]
+                                        changeLogSets.each { changeLogSet ->
+                                            def entries = changeLogSet.items
+                                            entries.each { entry ->
                                                 echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
-                                                def files = new ArrayList(entry.affectedFiles)
-                                                for (int k = 0; k < files.size(); k++) {
-                                                    def file = files[k]
-                                                    echo "  ${file.editType.name} ${file.path}"
+                                                def files = entry.affectedFiles
+                                                files.each { thefile ->
+                                                    echo "  ${thefile.editType.name} ${thefile.path}"
                                                 }
                                             }
                                         }
-
                                     }
                                 }
                             }
